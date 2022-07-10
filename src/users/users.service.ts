@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
+import { Db } from 'mongodb';
 
 export type User = any;
 
@@ -6,7 +7,11 @@ export type User = any;
 export class UsersService {
   private readonly users: User[];
 
-  constructor() {
+  constructor(
+    @Inject('DATABASE_CONNECTION')
+    private db: Db,
+
+  ) {
     this.users = [
       {
         userId: 1,
@@ -30,6 +35,8 @@ export class UsersService {
   }
 
   async findOne(username: string): Promise<User | undefined> {
-    return this.users.find(user => user.username === username);
+    return await this.db.collection('users').findOne({
+      username
+    });
   }
 }
