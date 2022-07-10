@@ -12,16 +12,19 @@ export class UsersService {
         userId: 1,
         username: 'john',
         password: 'changeme',
+        permissions: ['profile']
       },
       {
         userId: 2,
         username: 'chris',
         password: 'secret',
+        permissions: ['profile']
       },
       {
         userId: 3,
         username: 'maria',
         password: 'guess',
+        permissions: ['profile']
       },
     ];
   }
