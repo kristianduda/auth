@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { username: user.username, sub: user.userId, permissions: user.permissions };
+    const payload = { sub: user.userId, permissions: user.permissions };
     return {
       access_token: this.jwtService.sign(payload)
     };
